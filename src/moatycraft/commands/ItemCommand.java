@@ -20,14 +20,17 @@ public class ItemCommand implements CommandExecutor {
         if (args.length > 2) {
             return false;
         }
-        String[] split = args[0].split(":");
-        if (split[1].equalsIgnoreCase("")) {
+        String[] split = null;
+        if (args[0].endsWith(":")) {
+            split[0] = args[0].substring(0, args[0].length() - 1);
             split[1] = "0";
+        } else {
+            split = args[0].split(":");
         }
         ItemStack stack = new ItemStack(Integer.valueOf(split[0]), Integer.valueOf(args[1]), Short.valueOf(split[1]));
         Player player = (Player) sender;
         player.getInventory().setItem(player.getInventory().firstEmpty(), stack);
-        player.sendMessage(ChatColor.GREEN + "Enjoy your: " + stack.getType().name());
-        throw new UnsupportedOperationException("Not supported yet.");
+        player.sendMessage(ChatColor.RED + "Enjoy your: " + stack.getType().name());
+        return true;
     }
 }
