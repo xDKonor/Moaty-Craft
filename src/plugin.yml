@@ -1,0 +1,7 @@
+author: xDKonor
+name: MoatyCraft
+version: 1.0
+main: moatycraft.MainPlugin
+commands:
+  item:
+    description: Give yourself an item
